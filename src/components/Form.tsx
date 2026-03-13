@@ -8,6 +8,7 @@ export default function Form() {
         calories: 0
     })
     const handleChange = (e : React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) =>{
+        console.log(e.target.id, e.target.value);
         const isNumberField = ['category', 'calories'].includes(e.target.id);
         setActivity({
             ...activity,
@@ -24,7 +25,7 @@ export default function Form() {
                 <label htmlFor="category">Categoría: </label>
                 <select 
                     className="border border-slate-300 p-2 rounded-lg w-full bg-white"
-                    id="cateogy"
+                    id="category"
                     value={activity.category}
                     onChange={handleChange}
                     >
@@ -64,7 +65,7 @@ export default function Form() {
                 type="submit"
                 className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase
                  text-white cursor-pointer disabled:opacity-10" 
-                value="Guardar comida o ejercicio"
+                value={activity.category === 1 ? 'Agregar comida' : 'Agregar ejercicio'}
                 disabled={!isValidACtivity()}
             />
         </form>
